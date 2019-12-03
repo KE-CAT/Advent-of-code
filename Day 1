@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	vector<int> mass;
+	int fule;
+	int fuel_req = 0;
+	while (cin >> fule) {
+		mass.push_back(fule);
+	}	
+	for (int j = 0; j < mass.size(); j++) {
+		int fuel_req_one = 0;
+		while ((mass[j] / 3 - 2) > 0) {
+			mass[j] = mass[j] / 3 - 2;
+			fuel_req_one = fuel_req_one + mass[j];
+		}
+		fuel_req = fuel_req + fuel_req_one;
+	}
+	cout << fuel_req;
+	return 0;
+}
+//质量模块14需要2燃料。该燃料不需要其他燃料（2除以3，四舍五入为0，这将要求是负燃料），因此所需的总燃料仍然仅为2。
+//首先，质量模块1969需要654燃料。然后，这种燃料需要216更多的燃料（654 / 3 - 2）。 216则需要70更多的燃料，这需要21燃料，这需要5燃料，而这不需要其他燃料。
+//因此，一个质量模块所需的总燃料1969为654 + 216 + 70 + 21 + 5 = 966。
+//质量模块100756及其燃料所需的燃料为：33583 + 11192 + 3728 + 1240 + 411 + 135 + 43 + 12 + 2 = 50346。
+//当还考虑添加燃料的质量时，航天器上所有模块的燃料需求总和是多少？（分别计算每个模块的燃料需求，然后将它们加起来。）
