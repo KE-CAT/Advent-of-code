@@ -1,2 +1,1 @@
-# practice
-珂珂猪的练习
+advextofcode.com
