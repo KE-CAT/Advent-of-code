@@ -1,0 +1,49 @@
+一个数组，1为+，2为*，99停止。
+-1,0,0,0,99变成2,0,0,0,99（1 + 1 = 2）
+将index = 1（noun）和index = 2（verb）两个位置的值变为0~99任意值。若index = 0 的数值为19690720，则输出这两个数，格式：noun*100+verb
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	vector<int> progrom;
+	vector<int> nums;
+	int num;
+	bool judge = true;
+	int noun, verb;
+	while (cin >> num) {
+		progrom.push_back(num);
+	}
+
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 100; j++) {
+			nums.clear();
+			for (int m = 0; m < progrom.size(); m++) {
+				nums.push_back(progrom[m]);
+			}
+			nums[1] = i;
+			nums[2] = j;
+			noun = i;
+			verb = j;
+			for (int k = 0; k < nums.size(); k += 4) {
+				if (nums[k] == 1) {
+					nums[nums[k + 3]] = nums[nums[k + 1]] + nums[nums[k + 2]];
+				}
+				else if (nums[k] == 2) {
+					nums[nums[k + 3]] = nums[nums[k + 1]] * nums[nums[k + 2]];
+				}
+				else if (nums[k] == 99)
+					break;
+			}
+			if (nums[0] == 19690720) {
+				judge = false;
+				break;
+			}
+		}
+		if (judge == false) break;
+	}
+	cout << noun << " " << verb << endl;
+	cout << noun * 100 + verb;
+	return 0;
+}
